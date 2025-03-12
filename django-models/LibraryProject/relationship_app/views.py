@@ -33,6 +33,7 @@ class LibraryDetailView(DetailView):
 from django.contrib.auth.views import LoginView,LogoutView
 from django.urls import reverse_lazy
 from django.contrib.auth import login, logout
+from django.contrib.auth.forms import UserCreationForm
 
 
 class CustomLogin(login):
@@ -42,6 +43,14 @@ class CustomLogout(logout):
     template_path = "relationship_app/logout.html"
     # return HttpResponse(template_path)
 
+from django import forms
+
+class CustomUserCreationForm(UserCreationForm):
+    email = forms.EmailField(required=True)
+
+    class Meta:
+        # model = User
+        fields = ("username", "email", "password1", "password2")
 
 class RegisterView(CreateView):
     template_path = "relationship_app/register.html"
