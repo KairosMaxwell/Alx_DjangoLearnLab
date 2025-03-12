@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic import ListView
-from .models import Book,Author,Library
+from .models import Library,Book,Author
 
 # Create your views here.
 
@@ -14,10 +14,10 @@ def list_all_books(author_name):
     return HttpResponse(template, context)
 
 
-class BookListView(ListView):
-    model = Library
+class LibraryView(ListView):
+    library = Library
     template_path = "relationship_app/library_detail.html"
-    context_object_name = "books"
+    context_object_name = "library"
 
     def __init__(self, **kwargs):
         super().__init__(kwargs)
