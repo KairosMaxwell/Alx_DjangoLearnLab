@@ -6,7 +6,7 @@ from .models import Library,Book,Author
 
 # Create your views here.
 
-def list_all_books(author_name):
+def list_books(author_name):
     books = Book.objects.all()
     context = {"books":books}
     template ="relationship_app/list_books.html/"
@@ -15,7 +15,7 @@ def list_all_books(author_name):
     return HttpResponse(template, context)
 
 
-class LibraryView(DetailView):
+class LibraryDetailView(DetailView):
     library = Library
     template_path = "relationship_app/library_detail.html"
     context_object_name = "library"
