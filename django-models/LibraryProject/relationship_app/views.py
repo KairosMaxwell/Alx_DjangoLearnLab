@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.views.generic import ListView
+from django.views.generic import ListView,DetailView
 from .models import Library,Book,Author
 
 # Create your views here.
@@ -14,7 +14,7 @@ def list_all_books(author_name):
     return HttpResponse(template, context)
 
 
-class LibraryView(ListView):
+class LibraryView(DetailView):
     library = Library
     template_path = "relationship_app/library_detail.html"
     context_object_name = "library"
