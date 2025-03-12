@@ -29,3 +29,13 @@ class LibraryDetailView(DetailView):
         context['books'] = self.object.books.all()
         return context
 
+
+def login():
+    template_path = "relationship_app/login.html"
+    return HttpResponse(template_path)
+def logout():
+    template_path = "relationship_app/logout.html"
+    return HttpResponse(template_path)
+def register():
+    template_path = "relationship_app/register.html"
+    return HttpResponse(template_path)
