@@ -52,6 +52,6 @@ class CustomUserCreationForm(UserCreationForm):
         # model = User
         fields = ("username", "email", "password1", "password2")
 
-class RegisterView(CreateView):
+class register(CreateView):
     template_path = "relationship_app/register.html"
     success_url = reverse_lazy("login")
