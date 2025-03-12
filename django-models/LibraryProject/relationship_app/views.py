@@ -36,10 +36,10 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.forms import UserCreationForm
 
 
-class CustomLogin(login):
+class LogoutView(login):
     template_path = "relationship_app/login.html"
 
-class CustomLogout(logout):
+class LoginView(logout):
     template_path = "relationship_app/logout.html"
     # return HttpResponse(template_path)
 
