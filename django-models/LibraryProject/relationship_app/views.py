@@ -32,12 +32,13 @@ class LibraryDetailView(DetailView):
 
 from django.contrib.auth.views import LoginView,LogoutView
 from django.urls import reverse_lazy
+from django.contrib.auth import login, logout
 
 
-class CustomLogin(LoginView):
+class CustomLogin(login):
     template_path = "relationship_app/login.html"
 
-class CustomLogout(LogoutView):
+class CustomLogout(logout):
     template_path = "relationship_app/logout.html"
     # return HttpResponse(template_path)
 
