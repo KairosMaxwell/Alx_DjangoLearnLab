@@ -8,7 +8,7 @@ from .models import Book,Author,Library
 def list_all_books(author_name):
     books = Book.objects.all()
     context = {"books":books}
-    template ="templates/library_detail.html/"
+    template ="templates/list_books.html/"
     for book in books:
         return f"\nTitle: {book.title}, Author: {book.author.name}\n"
     return HttpResponse(template, context)
@@ -25,7 +25,6 @@ class BookListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
         context['books'] = self.object.books.all()
         return context
 
