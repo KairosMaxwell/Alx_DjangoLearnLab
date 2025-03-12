@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views.generic import CreateView
 from django.views.generic.detail import DetailView
-from django.views.generic.list import ListView
 from .models import Library,Book,Author
 
 # Create your views here.
@@ -30,12 +30,18 @@ class LibraryDetailView(DetailView):
         return context
 
 
-def login():
+from django.contrib.auth.views import LoginView,LogoutView
+from django.urls import reverse_lazy
+
+
+class CustomLogin(LoginView):
     template_path = "relationship_app/login.html"
-    return HttpResponse(template_path)
-def logout():
+
+class CustomLogout(LogoutView):
     template_path = "relationship_app/logout.html"
-    return HttpResponse(template_path)
-def register():
+    # return HttpResponse(template_path)
+
+
+class RegisterView(CreateView):
     template_path = "relationship_app/register.html"
-    return HttpResponse(template_path)
+    success_url = reverse_lazy("login")
