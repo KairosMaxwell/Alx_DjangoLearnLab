@@ -13,11 +13,11 @@ url_patterns = [
 
     path("/relationship_app", LibraryDetailView, name='LibraryView'),
 
-    path('login/', LogoutView.as_view(template_name=""), name='login'),
+    path('login/', LogoutView.as_view(template_name=views.LogoutView)),
 
     path('register/', views.register, name='register'),
 
-    path('logout/', LoginView.as_view(template_name=""), name='logout'),
+    path('logout/', LoginView.as_view(template_name=views.LoginView)),
 
 
 ]
