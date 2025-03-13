@@ -37,10 +37,10 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 class LogoutView(login):
-    template_path = "relationship_app/login.html"
+    template_path = "./templates/template/logout.html"
 
 class LoginView(logout):
-    template_path = "relationship_app/logout.html"
+    template_path = "./templates/template/login.html"
     # return HttpResponse(template_path)
 
 from django import forms
@@ -53,5 +53,5 @@ class CustomUserCreationForm(UserCreationForm):
         fields = ("username", "email", "password1", "password2")
 
 class register(CreateView):
-    template_path = "relationship_app/register.html"
+    template_path = "./templates/template/register.html"
     success_url = reverse_lazy("login")
