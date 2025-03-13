@@ -55,3 +55,30 @@ class CustomUserCreationForm(UserCreationForm):
 class register(CreateView):
     template_path = "./templates/template/register.html"
     success_url = reverse_lazy("login")
+
+
+from django.shortcuts import render
+from django.contrib.auth.decorators import user_passes_test
+
+def is_admin(user):
+    return user.userprofile.role == 'Admin'
+
+def is_librarian(user):
+    return user.userprofile.role == 'Librarian'
+
+def is_member(user):
+    return user.userprofile.role == 'Member'
+
+@user_passes_test(is_admin)
+def admin_view(request):
+    return render(request, "")
+
+@user_passes_test(is_librarian)
+def librarian_view(request):
+    template_path = "./templates/template/librarian_view.html"
+    return render(request, template_path)
+
+@user_passes_test(is_member)
+def member_view(request):
+    template_path = "./templates/template/member_view.html"
+    return render(request, template_path)
