@@ -9,15 +9,13 @@ from . import views
 
 url_patterns = [
 
-    path("/relationship_app", list_books, name='list_all_books'),
+    path("all_books/", list_books, name='list_all_books'),
 
-    path("/relationship_app", LibraryDetailView, name='LibraryView'),
+    path("libraryView/", LibraryDetailView, name='LibraryView'),
 
     path('login/', LogoutView.as_view(template_name="")),
 
     path('register/', views.register, name='register'),
 
-    path('logout/', LoginView.as_view(template_name=""), name='logout'),
-
-
+    path('logout/', LoginView.as_view(template_name=""), name='logout')
 ]
