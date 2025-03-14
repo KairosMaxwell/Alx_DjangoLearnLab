@@ -91,7 +91,7 @@ class register(CreateView):
 from django.contrib.auth.decorators import user_passes_test
 from django.http import HttpResponse
 
-def is_admin(user):
+def Admin(user):
     return hasattr(user, 'profile') and user.profile.role== 'Admin
 @user_passes_test(is_admin)
 def admin_view(request):
@@ -103,7 +103,7 @@ def admin_view(request):
 from django.contrib.auth.decorators import user_passes_test
 from django.http import HttpResponse
 
-def is_librarian(user):
+def Librarian(user):
     return hasattr(user, 'profile') and user.profile.role == 'Librarian'
 
 @user_passes_test(is_librarian)
@@ -115,7 +115,7 @@ def librarian_view(request):
 from django.contrib.auth.decorators import user_passes_test
 from django.http import HttpResponse
 
-def is_member(user):
+def Member(user):
     return hasattr(user, 'profile') and user.profile.role == 'Member'
 
 @user_passes_test(is_member)
