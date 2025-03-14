@@ -24,4 +24,8 @@ urlpatterns = [
     path('librarian/', Librarian, name='librarian_view'),
     path('member/', Member, name='member_view'),
 
+    path('add/', views.add_book, name='add_book'),
+    path('edit/<int:pk>/', views.edit_book, name='edit_book'),
+    path('delete/<int:pk>/', views.delete_book, name='delete_book')
+
 ]
