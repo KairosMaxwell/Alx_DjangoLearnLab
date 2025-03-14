@@ -30,7 +30,7 @@ class LibraryDetailView(DetailView):
         return context
 
 
-from django.contrib.auth.views import LoginView,LogoutView
+
 from django.urls import reverse_lazy
 from django.contrib.auth import login, logout
 from django.contrib.auth.forms import UserCreationForm
@@ -57,28 +57,96 @@ class register(CreateView):
     success_url = reverse_lazy("login")
 
 
-from django.shortcuts import render
+
+
+
+
+
+# def is_admin(user):
+#     return user.userprofile.role == 'Admin'
+#
+# def is_librarian(user):
+#     return user.userprofile.role == 'Librarian'
+#
+# def is_member(user):
+#     return user.userprofile.role == 'Member'
+#
+# @user_passes_test(is_admin)
+# def admin_view(request):
+#     return render(request, "")
+#
+# @user_passes_test(is_librarian)
+# def librarian_view(request):
+#     template_path = "./templates/template/librarian_view.html"
+#     return render(request, template_path)
+#
+# @user_passes_test(is_member)
+# def member_view(request):
+#     template_path = "./templates/template/member_view.html"
+#     return render(request, template_path)
+
+
+
+
 from django.contrib.auth.decorators import user_passes_test
+from django.http import HttpResponse
 
 def is_admin(user):
-    return user.userprofile.role == 'Admin'
-
-def is_librarian(user):
-    return user.userprofile.role == 'Librarian'
-
-def is_member(user):
-    return user.userprofile.role == 'Member'
+    return hasattr(user, 'profile') and user.profile.role == 'Admin'
 
 @user_passes_test(is_admin)
 def admin_view(request):
-    return render(request, "")
+    return HttpResponse("Welcome to the Admin view! Only Admin users can access this.")
+
+from django.contrib.auth.decorators import user_passes_test
+from django.http import HttpResponse
+
+def is_librarian(user):
+    return hasattr(user, 'profile') and user.profile.role == 'Librarian'
 
 @user_passes_test(is_librarian)
 def librarian_view(request):
-    template_path = "./templates/template/librarian_view.html"
-    return render(request, template_path)
+    return HttpResponse("Welcome to the Librarian view! Only Librarians can access this.")
+
+
+
+from django.contrib.auth.decorators import user_passes_test
+from django.http import HttpResponse
+
+def is_member(user):
+    return hasattr(user, 'profile') and user.profile.role == 'Member'
 
 @user_passes_test(is_member)
 def member_view(request):
-    template_path = "./templates/template/member_view.html"
-    return render(request, template_path)
+    return HttpResponse("Welcome to the Member view! Only Members can access this.")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
