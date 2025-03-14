@@ -4,7 +4,7 @@ from .views import list_books
 from .views import LogoutView
 from .views import LoginView
 from . import views
-from .views import admin_view, librarian_view, member_view
+from .views import Admin, Librarian, Member
 
 
 
@@ -20,8 +20,8 @@ urlpatterns = [
 
     path('logout/', LoginView.as_view(template_name=""), name='logout'),
 
-    path('admin/', admin_view, name='admin_view'),
-    path('librarian/', librarian_view, name='librarian_view'),
-    path('member/', member_view, name='member_view'),
+    path('admin/', Admin, name='admin_view'),
+    path('librarian/', Librarian, name='librarian_view'),
+    path('member/', Member, name='member_view'),
 
 ]

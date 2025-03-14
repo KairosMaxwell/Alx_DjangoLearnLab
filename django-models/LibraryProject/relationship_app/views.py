@@ -63,18 +63,18 @@ def role_required(role):
 
 # Admin View
 @role_required('Admin')
-def admin_view(request):
+def Admin(request):
     template_path="./templates/template/admin_view.html"
     return render(request, template_path)
 
 # Librarian View
 @role_required('Librarian')
-def librarian_view(request):
+def Librarian(request):
     template_path = "./templates/template/login.html"
     return render(request, template_path)
 
 # Member View
 @role_required('Member')
-def member_view(request):
+def Member(request):
     template_path = "./templates/template/member_view.html"
     return render(request, template_path)
