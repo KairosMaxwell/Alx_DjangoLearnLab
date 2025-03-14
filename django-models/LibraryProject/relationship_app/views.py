@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.views.generic import CreateView
 from django.views.generic.detail import DetailView
 from .models import Library,Book,Author
-
+from django.contrib.auth.decorators import user_passes_test
 # Create your views here.
 
 def list_books(author_name):
@@ -56,99 +56,25 @@ class register(CreateView):
     template_path = "./templates/template/register.html"
     success_url = reverse_lazy("login")
 
+def role_required(role):
+    def decorator(view_func):
+        return user_passes_test(lambda u: u.userprofile.role == role)(view_func)
+    return decorator
 
-
-
-
-
-
-# def is_admin(user):
-#     return user.userprofile.role == 'Admin'
-#
-# def is_librarian(user):
-#     return user.userprofile.role == 'Librarian'
-#
-# def is_member(user):
-#     return user.userprofile.role == 'Member'
-#
-# @user_passes_test(is_admin)
-# def admin_view(request):
-#     return render(request, "")
-#
-# @user_passes_test(is_librarian)
-# def librarian_view(request):
-#     template_path = "./templates/template/librarian_view.html"
-#     return render(request, template_path)
-#
-# @user_passes_test(is_member)
-# def member_view(request):
-#     template_path = "./templates/template/member_view.html"
-#     return render(request, template_path)
-
-
-
-
-from django.contrib.auth.decorators import user_passes_test
-from django.http import HttpResponse
-
-def Admin(user):
-    return hasattr(user, 'profile') and user.profile.role== 'Admin
-@user_passes_test(is_admin)
+# Admin View
+@role_required('Admin')
 def admin_view(request):
-    return HttpResponse("Welcome to the Admin view! Only Admin users can access this.")
+    template_path="./templates/template/admin_view.html"
+    return render(request, template_path)
 
-
-
-
-from django.contrib.auth.decorators import user_passes_test
-from django.http import HttpResponse
-
-def Librarian(user):
-    return hasattr(user, 'profile') and user.profile.role == 'Librarian'
-
-@user_passes_test(is_librarian)
+# Librarian View
+@role_required('Librarian')
 def librarian_view(request):
-    return HttpResponse("Welcome to the Librarian view! Only Librarians can access this.")
+    template_path = "./templates/template/login.html"
+    return render(request, template_path)
 
-
-
-from django.contrib.auth.decorators import user_passes_test
-from django.http import HttpResponse
-
-def Member(user):
-    return hasattr(user, 'profile') and user.profile.role == 'Member'
-
-@user_passes_test(is_member)
+# Member View
+@role_required('Member')
 def member_view(request):
-    return HttpResponse("Welcome to the Member view! Only Members can access this.")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    template_path = "./templates/template/member_view.html"
+    return render(request, template_path)
