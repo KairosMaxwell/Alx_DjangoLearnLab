@@ -39,6 +39,17 @@ AUTHENTICATION_BACKENDS =[
 ]
 
 
+SECURE_SSL_REDIRECT = True  # Redirect all non-HTTPS requests to HTTPS
+SECURE_HSTS_SECONDS = 31536000  # One year; instructs browsers to only use HTTPS
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Include all subdomains in HSTS policy
+SECURE_HSTS_PRELOAD = True  # Allows the site to be included in the HSTS preload list
+SESSION_COOKIE_SECURE = True  # Transmit session cookies over HTTPS only
+CSRF_COOKIE_SECURE = True  # Transmit CSRF cookies over HTTPS only
+SECURE_CONTENT_TYPE_NOSNIFF = True  # Prevent browsers from MIME-sniffing the content type
+SECURE_BROWSER_XSS_FILTER = True  # Enable the browser's XSS protection
+X_FRAME_OPTIONS = 'DENY'  # Prevent the site from being framed (protects against clickjacking)
+
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SECURE_BROWSER_XSS_FILTER = True  # Enable browser's XSS filter
 X_FRAME_OPTIONS = 'DENY'  # Prevent clickjacking by disallowing iframes
