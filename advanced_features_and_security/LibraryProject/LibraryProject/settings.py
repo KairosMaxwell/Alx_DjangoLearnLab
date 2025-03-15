@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-l301-ci5&!ty5tk0j_-slvt$#p60nrjogn(sg&1m^px!tvf&y^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -37,6 +37,21 @@ AUTHENTICATION_BACKENDS =[
     # "path.to.EmailBackends",
     'django.contrib.auth.backends.ModelBackend', # Fallback
 ]
+
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+SECURE_BROWSER_XSS_FILTER = True  # Enable browser's XSS filter
+X_FRAME_OPTIONS = 'DENY'  # Prevent clickjacking by disallowing iframes
+SECURE_CONTENT_TYPE_NOSNIFF = True  # Prevent MIME-type sniffing
+# Enforce HTTPS-only cookies
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
+
+CSP_DEFAULT_SRC = ("'self'",)
+CSP_SCRIPT_SRC = ("'self'", "cdnjs.cloudflare.com")  # Example: allow external scripts
+CSP_STYLE_SRC = ("'self'", "cdnjs.cloudflare.com")
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -136,4 +151,3 @@ STATIC_URL = 'static/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
