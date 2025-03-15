@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 
+from advanced_features_and_security.LibraryProject.relationship_app.models import EmailBackend
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -28,8 +30,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
+AUTH_USER_MODEL = "path.to.CustomUser"
+
+AUTHENTICATION_BACKENDS =[
+    "path.to.EmailBackends",
+    'django.contrib.auth.backends.ModelBackend', # Fallback
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -58,7 +65,7 @@ ROOT_URLCONF = 'LibraryProject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "template"],
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -69,6 +76,11 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+AUTHENTICATION_BACKENDS = [
+    # 'path.to.EmailBackend',
+    'django.contrib.auth.backends.ModelBackend',
 ]
 
 WSGI_APPLICATION = 'LibraryProject.wsgi.application'

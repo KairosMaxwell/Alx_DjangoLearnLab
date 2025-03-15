@@ -119,3 +119,11 @@ def delete_book(request, pk):
         book.delete()
         return redirect('book_list')  # Redirect to a book listing page
     return render(request, 'delete_book.html', {'book': book})
+
+
+
+def my_view(request):
+    if request.user.has_perm('relationship_app.add_book'):
+        pass
+    else:
+        pass
