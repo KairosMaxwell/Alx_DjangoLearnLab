@@ -20,29 +20,32 @@ from django.contrib.auth.admin import UserAdmin
 from .models import CustomUser
 
 class CustomUserAdmin(UserAdmin):
-    # Specify the fields to display in the admin interface
-    list_display = ('email', 'first_name', 'last_name', 'is_staff', 'date_of_birth')
-    # Define fields for filtering in the admin sidebar
+    # Display these fields in the admin user list
+    list_display = ('email', 'first_name', 'last_name', 'date_of_birth', 'is_staff')
+    # Enable filtering options in the admin sidebar
     list_filter = ('is_staff', 'is_superuser', 'is_active')
-    # Allow searching for users by specific fields
+    # Search bar functionality
     search_fields = ('email', 'first_name', 'last_name')
-    # Read-only fields for display purposes
+    # Set fields that are read-only
     readonly_fields = ('last_login', 'date_joined')
-    # Specify fieldsets for creating and editing users
+
+    # Define fieldsets to group fields in the edit form
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        ('Personal Information', {'fields': ('first_name', 'last_name', 'date_of_birth', 'profile_photo')}),
-        ('Permissions', {'fields': ('is_staff', 'is_active', 'is_superuser', 'groups', 'user_permissions')}),
+        ('Personal Info', {'fields': ('first_name', 'last_name', 'date_of_birth', 'profile_photo')}),
+        ('Permissions', {'fields': ('is_staff', 'is_superuser', 'is_active', 'groups', 'user_permissions')}),
         ('Important Dates', {'fields': ('last_login', 'date_joined')}),
     )
-    # Fields for creating new users
+
+    # Configuration for creating new users in the admin panel
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
             'fields': ('email', 'password1', 'password2', 'is_staff', 'is_active'),
         }),
     )
-    # Specify ordering of displayed records
+
+    # Specify default ordering of records in the admin user list
     ordering = ('email',)
 
 admin.site.register(CustomUser,CustomUserAdmin)
