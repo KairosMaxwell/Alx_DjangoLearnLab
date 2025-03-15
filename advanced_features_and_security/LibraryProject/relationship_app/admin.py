@@ -8,11 +8,10 @@ admin.site.register(Library)
 admin.site.register(UserProfile)
 
 
-class CustomUserAdmin:
-    pass
 
 
-admin.site.register(CustomUser,CustomUserAdmin)
+
+
 
 
 
