@@ -3,6 +3,10 @@ from .models import Book
 # Create your views here.
 from django.contrib.auth.decorators import permission_required
 from django.shortcuts import render
+from .forms import ExampleForm
+
+
+
 
 @permission_required('bookshelf.can_view', raise_exception=True)
 def view_instance(request, pk):
