@@ -50,6 +50,9 @@ SECURE_BROWSER_XSS_FILTER = True  # Enable the browser's XSS protection
 X_FRAME_OPTIONS = 'DENY'  # Prevent the site from being framed (protects against clickjacking)
 
 
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SECURE_BROWSER_XSS_FILTER = True  # Enable browser's XSS filter
 X_FRAME_OPTIONS = 'DENY'  # Prevent clickjacking by disallowing iframes
