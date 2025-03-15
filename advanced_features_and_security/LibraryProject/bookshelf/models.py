@@ -49,3 +49,25 @@ class CustomUser(AbstractUser):
 
     objects = CustomUserManager()
 
+class CustomModel(models.Model):
+    # Example fields in your model
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+
+    class Meta:
+        permissions = [
+            ("can_view", "Can view instances of MyModel"),
+            ("can_create", "Can create instances of MyModel"),
+            ("can_edit", "Can edit instances of MyModel"),
+            ("can_delete", "Can delete instances of MyModel"),
+        ]
+
+from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.views.generic.edit import UpdateView
+
+
+class EditInstanceView(PermissionRequiredMixin, UpdateView):
+    model = CustomModel
+    fields = ['name', 'description']
+    template_name = 'edit_instance.html'
+    permission_required = 'app_name.can_edit'

@@ -41,6 +41,42 @@ class CustomUserAdmin(UserAdmin):
     ordering = ('email',)
 
 
+from django.contrib.auth.models import Group, Permission
+from django.contrib.contenttypes.models import ContentType
+from bookshelf.models import MyModel  # Replace with your model's name
+
+# Step 1: Define groups
+groups = {
+    "Editors": ["can_edit", "can_create"],
+    "Viewers": ["can_view"],
+    "Admins": ["can_view", "can_create", "can_edit", "can_delete"],
+}
+
+
+# Step 2: Assign permissions
+def create_groups_and_permissions():
+    content_type = ContentType.objects.get_for_model(MyModel)  # Use your actual model name
+
+    for group_name, permissions in groups.items():
+        # Get or create the group
+        group, created = Group.objects.get_or_create(name=group_name)
+
+        for perm_name in permissions:
+            # Get or create the permission
+            permission, perm_created = Permission.objects.get_or_create(
+                codename=perm_name,
+                name=f"Can {perm_name.replace('_', ' ')} instances of MyModel",
+                content_type=content_type,
+            )
+            # Add the permission to the group
+            group.permissions.add(permission)
+
+    print("Groups and permissions created successfully.")
+
+
+# Call the function
+create_groups_and_permissions()
+
 # Register your models here.
 # admin.site.register(Book)
 admin.ModelAdmin(Book,BookAdmin)
