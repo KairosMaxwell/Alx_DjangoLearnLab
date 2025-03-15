@@ -7,14 +7,6 @@ class BookAdmin(admin.ModelAdmin):
     list_filter = ('author', 'published_date')
     search_fields = ('title', 'author')
 
-'''
-"list_filter", "author", "publication_year"
-'''
-# Register your models here.
-# admin.site.register(Book)
-admin.ModelAdmin(Book,BookAdmin)
-
-
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .models import CustomUser
@@ -48,4 +40,8 @@ class CustomUserAdmin(UserAdmin):
     # Specify default ordering of records in the admin user list
     ordering = ('email',)
 
+
+# Register your models here.
+# admin.site.register(Book)
+admin.ModelAdmin(Book,BookAdmin)
 admin.site.register(CustomUser,CustomUserAdmin)
