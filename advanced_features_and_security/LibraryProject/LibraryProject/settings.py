@@ -31,10 +31,10 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 # Application definition
-AUTH_USER_MODEL = "path.to.CustomUser"
+AUTH_USER_MODEL = "bookshelf.CustomUser"
 
 AUTHENTICATION_BACKENDS =[
-    "path.to.EmailBackends",
+    # "path.to.EmailBackends",
     'django.contrib.auth.backends.ModelBackend', # Fallback
 ]
 
