@@ -14,4 +14,9 @@ class BookAdmin(admin.ModelAdmin):
 # admin.site.register(Book)
 admin.ModelAdmin(Book,BookAdmin)
 
-admin.site.register(CustomUser,CustomUserManager)
+
+class CustomUserAdmin:
+    pass
+
+
+admin.site.register(CustomUser,CustomUserAdmin)
