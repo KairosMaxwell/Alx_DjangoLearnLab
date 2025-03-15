@@ -39,10 +39,10 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 class LogoutView(login):
-    template_path = "./templates/template/logout.html"
+    template_path = "templates/relationship_app/logout.html"
 
 class LoginView(logout):
-    template_path = "./templates/template/login.html"
+    template_path = "templates/relationship_app/login.html"
     # return HttpResponse(template_path)
 
 from django import forms
@@ -55,7 +55,7 @@ class CustomUserCreationForm(UserCreationForm):
         fields = ("username", "email", "password1", "password2")
 
 class register(CreateView):
-    template_path = "./templates/template/register.html"
+    template_path = "templates/relationship_app/register.html"
     success_url = reverse_lazy("login")
 
 def role_required(role):
@@ -66,19 +66,19 @@ def role_required(role):
 # Admin View
 @role_required('Admin')
 def Admin(request):
-    template_path="./templates/template/admin_view.html"
+    template_path= "templates/relationship_app/admin_view.html"
     return render(request, template_path)
 
 # Librarian View
 @role_required('Librarian')
 def Librarian(request):
-    template_path = "./templates/template/login.html"
+    template_path = "templates/relationship_app/login.html"
     return render(request, template_path)
 
 # Member View
 @role_required('Member')
 def Member(request):
-    template_path = "./templates/template/member_view.html"
+    template_path = "templates/relationship_app/member_view.html"
     return render(request, template_path)
 
 
