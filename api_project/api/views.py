@@ -4,7 +4,7 @@ from django.shortcuts import render
 from .models import Book
 from rest_framework import generics
 from rest_framework.response import Response
-from .serializer import BookSerializer
+from .serializers import BookSerializer
 
 
 class BookAPIView(generics.ListAPIView):
