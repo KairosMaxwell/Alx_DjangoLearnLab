@@ -39,6 +39,7 @@ REST_FRAMEWORK = {
 
 
 INSTALLED_APPS = [
+    'rest_framework.permissions.IsAuthenticated',
 
     'rest_framework.authtoken',
     "rest_framework",
