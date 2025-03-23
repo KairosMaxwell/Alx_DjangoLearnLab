@@ -45,7 +45,7 @@ class PostForm(forms.ModelForm):
 #     pass
 
 class ModifyPostForm(PostForm):
-    pass
+    TagWidget(attrs={'class': 'form-control', 'placeholder': 'Add tags separated by commas'}),
 
 class UpdateForms(PostForm):
-    pass
+    TagWidget(attrs={'class': 'form-control', 'placeholder': 'Add tags separated by commas'}),
