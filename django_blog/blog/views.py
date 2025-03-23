@@ -103,3 +103,12 @@ def add_comment(request, post_id):
 
 
 
+
+class CommentCreateView(CreateView):
+    pass
+
+
+class CommentUpdateView(CreateView):
+    pass
+class CommentDeleteView(CreateView):
+    pass
