@@ -41,3 +41,7 @@ class PostForm(forms.ModelForm):
         return instance
 
 
+class TagWidget(forms.ModelForm):
+    pass
+
+
