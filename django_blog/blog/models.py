@@ -11,4 +11,5 @@ class BlogPost(models.Model):
     published_date = models.DateTimeField(auto_now_add=True)
 
 
-
+class Post(models.Model):
+    pass
