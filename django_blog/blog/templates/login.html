@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="static/login.css" />
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'templates/css/login.css %}' %}" />
     <title>Login</title>
 </head>
 <body>
