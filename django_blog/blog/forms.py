@@ -38,3 +38,6 @@ class PostForm(forms.ModelForm):
                     instance.tags.add(tag)
         return instance
 
+
+class TagWidget(forms.ModelForm):
+    pass
