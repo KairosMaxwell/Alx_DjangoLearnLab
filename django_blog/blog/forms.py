@@ -44,4 +44,8 @@ class PostForm(forms.ModelForm):
 # class TagWidget(forms.ModelForm):
 #     pass
 
+class ModifyPostForm(PostForm):
+    pass
 
+class UpdateForms(PostForm):
+    pass
