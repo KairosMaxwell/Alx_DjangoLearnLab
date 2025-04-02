@@ -8,7 +8,7 @@ from . import views
 
 
 urlpattern =[
-    path("api/",include('posts.urls')),
+
     path("register/",views.RegisterView.as_view(template_name=""),name="register"),
     path("login/",views.LoginView.as_view(template_name=""),name="login"),
     path("profile/",views.ProfileView,name="profile"),
