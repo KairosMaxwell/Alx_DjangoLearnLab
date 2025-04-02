@@ -16,12 +16,12 @@ urlpatterns = [
     # path('post/<int:pk>/edit/', PostUpdateView.as_view(), name='post-edit'),
     path('post/<int:pk>/delete/', PostDeleteView.as_view()),
     path('post/<int:pk>/update/',PostUpdateView.as_view(), name='post-edit'),
-    path('post/<int:post_id>/comments/new/', views.add_comment, name='add-comment'),
+    # path('post/<int:post_id>/comments/new/', views.add_comment, name='add-comment'),
     path("",CommentCreateView.as_view(), name='comment-list'),
     path("comment/<int:pk>/update/",CommentUpdateView.as_view(), name='comment-update'),
     path("comment/<int:pk>/delete/",CommentDeleteView.as_view(), name='comment-delete'),
-path('search/', search_posts, name='search-posts'),
-    path('taggit', posts_by_tag, name='posts-by-tag'),
+    # path('search/', search_posts, name='search-posts'),
+    # path('taggit', posts_by_tag, name='posts-by-tag'),
     # path('tags/<str:tag_name>/', posts_by_tag, name='posts-by-tag'),
 
     """
