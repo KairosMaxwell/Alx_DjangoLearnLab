@@ -11,7 +11,7 @@ class Post(models.Model):
 
 
 
-class Comments(models.Model):
+class Comment(models.Model):
     Post = models.ForeignKey(Post , on_delete=models.CASCADE)
     content = models
     User = models.ForeignKey(User , on_delete=models.CASCADE)
