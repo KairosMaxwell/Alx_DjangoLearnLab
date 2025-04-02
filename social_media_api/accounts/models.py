@@ -9,6 +9,6 @@ bio, profile_picture, and followers
 """
 
 class CustomUserModel(AbstractUser):
-    bio = models.ManyToManyField(User ,symmetrical=False)
+    bio = models.TextField(max_length=500, blank=True)
     profile_picture = models.ImageField(upload_to="profile_pictures", null=True, blank=True)
     followers = models.ManyToManyField(User ,symmetrical=False)
