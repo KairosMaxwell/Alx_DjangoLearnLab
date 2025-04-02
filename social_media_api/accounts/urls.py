@@ -12,7 +12,7 @@ from . import views
 
 
 urlpattern =[
-    path("/register",views.RegisterView.as_view(template_name=""),name="register"),
-    path("/login",views.LoginView.as_view(template_name=""),name="login"),
-    path("/profile",views.ProfileView,name="profile"),
+    path("register/",views.RegisterView.as_view(template_name=""),name="register"),
+    path("login/",views.LoginView.as_view(template_name=""),name="login"),
+    path("profile/",views.ProfileView,name="profile"),
 ]
