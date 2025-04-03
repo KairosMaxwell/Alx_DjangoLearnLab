@@ -1,11 +1,11 @@
 from rest_framework.permissions import IsAuthenticated
-from rest_framework import generics
+from rest_framework import generics,permissions
 from rest_framework.response import Response
 from social_media_api.accounts.models import CustomUser
 
 
 class FollowUserView(generics.GenericAPIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
 
     def post(self,request,user_id):
         who_to_follow = CustomUser.objects.all()
@@ -16,7 +16,7 @@ class FollowUserView(generics.GenericAPIView):
 
 
 class UnFollowUserView(generics.GenericAPIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
 
     def post(self,request,user_id):
         who_to_unfollow = CustomUser.objects.all()
