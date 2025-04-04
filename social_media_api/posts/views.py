@@ -80,6 +80,13 @@ class UnlikePostView(viewsets.ModelViewSet):
         try:
             liked_post = LikeModel.objects.get(user=request.user, post=post)
             liked_post.delete()
+            if liked_post.delete():
+                Notification.objects.create(
+                    recipient=post.author,
+                    actor=request.user,
+                    verb="Unliked your post",
+                    target=post
+                )
             Response(f"You are now unliked {post}")
         except LikeModel.DoesNotExist:
             Response(f"You are not liked this {post}")
