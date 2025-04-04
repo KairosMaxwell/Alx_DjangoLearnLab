@@ -76,7 +76,6 @@ class UnlikePostView(viewsets.ModelViewSet):
     permission_classes =[permissions.IsAuthenticatedOrReadOnly]
 
     def unliking(self,request,post_id):
-        # post = Post.objects.get(id=post_id)
         post = generics.get_object_or_404(Post, pk=post_id)
         try:
             liked_post = LikeModel.objects.get(user=request.user, post=post)
