@@ -29,7 +29,6 @@ class PostViewSet(viewsets.ModelViewSet):
         serializer.save(user=self.request.user)
 
 
-
 class CommentViewSet(viewsets.ModelViewSet):
     serializer_class = CommentSerializer
     queryset = Comment.objects.all().order_by("-created_at")
@@ -52,7 +51,7 @@ class PostFeed(generics.GenericAPIView):
         return Post.objects.filter(author__in=following_users).order_by('-created_at')
 
 from .models import LikeModel
-
+from social_media_api.notifications.models import Notification
 
 class LikePostView(viewsets.ModelViewSet):
     serializer_class = LikeSerializer
@@ -62,9 +61,16 @@ class LikePostView(viewsets.ModelViewSet):
         post = Post.objects.get(id=post_id)
         liked, created = LikeModel.objects.get_or_create(user = request.user , post=post)
         if created:
+            Notification.objects.create(
+                recipient=post.author,
+                actor=request.user,
+                verb="liked your post",
+                target=post
+            )
             Response(f"You are now liked {post}")
-        else:
-            Response(f"You are already liked {post}")
+
+            return Response({'message': 'Post liked'})
+        return Response({'message': 'You already liked this post'})
 
 class UnlikePostView(viewsets.ModelViewSet):
     permission_classes =[permissions.IsAuthenticatedOrReadOnly]
